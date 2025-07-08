@@ -1,4 +1,3 @@
-// Calendario Otoñal - JavaScript
 class CalendarioOtono {
     constructor() {
         this.fechaActual = new Date();
@@ -159,7 +158,14 @@ class CalendarioOtono {
         
         elementosDia.forEach(elemento => {
             const fecha = elemento.getAttribute('data-date');
-            const dia = parseInt(elemento.getAttribute('data-day'));
+            const diaAttr = elemento.getAttribute('data-day');
+            
+            // Verificar que los atributos existan antes de procesarlos
+            if (!fecha || !diaAttr) {
+                return;
+            }
+            
+            const dia = parseInt(diaAttr);
             const [anio, mes] = fecha.split('-').map(Number);
             const mesIndex = mes - 1;
             
@@ -207,14 +213,4 @@ class CalendarioOtono {
 // Inicializar el calendario cuando se carga la página
 document.addEventListener('DOMContentLoaded', () => {
     new CalendarioOtono();
-    
-    // Mensaje de bienvenida en consola
-    console.log('🍂 Calendario Otoñal cargado correctamente! 🍂');
-    console.log('Características:');
-    console.log('✅ Detección de años bisiestos');
-    console.log('✅ Marcado del día actual');
-    console.log('✅ Marcado de feriados argentinos');
-    console.log('✅ Marcado de fines de semana');
-    console.log('✅ Navegación entre meses');
-    console.log('✅ Diseño responsivo otoñal');
 });
